@@ -13,6 +13,7 @@ public final class Main extends JavaPlugin {
 
     public Player playerKilledThisRound = null;
     public boolean gameRunning = false;
+    public boolean roundActive = false;
 
     @Override
     public void onEnable() {

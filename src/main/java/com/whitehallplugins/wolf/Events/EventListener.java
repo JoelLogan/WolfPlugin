@@ -29,7 +29,7 @@ public class EventListener implements Listener {
         if (event.getEntity().getType().equals(EntityType.PLAYER)) {
             if (event.getDamager().getType().equals(EntityType.PLAYER)) {
                 if (((Player) event.getDamager()).getInventory().getItemInMainHand().hasItemFlag(ItemFlag.HIDE_DYE)
-                        && plugin.playerKilledThisRound == null && plugin.gameRunning) {
+                        && plugin.playerKilledThisRound == null && plugin.roundActive) {
                     event.setDamage(1000);
                     ((Player) event.getEntity()).getInventory().clear();
                     ((Player) event.getEntity()).ban("You were killed by the wolf", (Date) null, null, true);

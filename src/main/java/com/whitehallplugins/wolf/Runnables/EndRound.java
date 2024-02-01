@@ -26,7 +26,7 @@ public class EndRound extends BukkitRunnable {
         teleport().runTaskLater(plugin, 100);
         summonParticles().runTaskTimer(plugin, 100, 20);
         updateScoreboard().runTaskLater(plugin, 160);
-        plugin.gameRunning = false;
+        plugin.roundActive = false;
         cancelRunnables(plugin).runTaskLater(plugin, 500);
     }
 
