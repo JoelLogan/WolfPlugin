@@ -67,8 +67,8 @@ public class WolfCommands implements CommandExecutor {
                                     wolf.getInventory().addItem(ItemManager.wolfSword);
                                     new PlayerTracker(wolf).runTaskTimer(plugin, 20, 5);
                                     plugin.gameRunning = true;
-                                    plugin.roundActive = true;
                                 }
+                                plugin.roundActive = true;
                                 new EndRound(plugin).runTaskLater(plugin, (plugin.getConfig().getInt("Timer") * 1200L) - 100);
                                 player.sendMessage(Component.text("§aStarting the round!"));
                             }
