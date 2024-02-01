@@ -48,6 +48,9 @@ public class WolfTabCompleter implements TabCompleter {
                                     || args[1].equalsIgnoreCase("scoreboard")){
                                 filteredCommands.add("<player>");
                             }
+                            else if (args[1].equalsIgnoreCase("timer")) {
+                                filteredCommands.add("<minutes>");
+                            }
                             return filteredCommands;
                         case 4:
                             if (args[1].equalsIgnoreCase("images")) {

@@ -5,6 +5,9 @@ import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Objects;
+import java.util.UUID;
+
 public class SetupScoreboard extends BukkitRunnable {
 
     private final Main plugin;
@@ -16,8 +19,9 @@ public class SetupScoreboard extends BukkitRunnable {
     @Override
     public void run() {
         for (Player p : plugin.getServer().getOnlinePlayers()){
-            if (plugin.getConfig().get("Scoreboard." + p.getName().toLowerCase()) != null) {
-                ItemFrame itemFrame = (ItemFrame) plugin.getConfig().get("Scoreboard." + p.getName().toLowerCase());
+            if (plugin.getConfig().isSet("Scoreboard." + p.getName().toLowerCase())) {
+                UUID uuid = UUID.fromString(Objects.requireNonNull(plugin.getConfig().getString("Scoreboard." + p.getName().toLowerCase())));
+                ItemFrame itemFrame = (ItemFrame) plugin.getServer().getEntity(uuid);
                 assert itemFrame != null;
                 itemFrame.setItem(plugin.getConfig().getItemStack("Images." + p.getName().toLowerCase() + ".living"));
             }

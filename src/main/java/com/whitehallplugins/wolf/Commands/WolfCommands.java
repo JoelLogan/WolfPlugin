@@ -3,6 +3,7 @@ package com.whitehallplugins.wolf.Commands;
 import com.whitehallplugins.wolf.Items.ItemManager;
 import com.whitehallplugins.wolf.Main;
 import com.whitehallplugins.wolf.Runnables.EndRound;
+import com.whitehallplugins.wolf.Runnables.PlayerTracker;
 import com.whitehallplugins.wolf.Runnables.SetupScoreboard;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -59,14 +60,16 @@ public class WolfCommands implements CommandExecutor {
                             else {
                                 if (!plugin.gameRunning){
                                     new SetupScoreboard(plugin).runTask(plugin);
+                                    Player wolf = plugin.getServer().getPlayer(Objects.requireNonNull(plugin.getConfig().getString("Wolf")));
+                                    assert wolf != null;
+                                    wolf.getInventory().setHeldItemSlot(8);
+                                    wolf.getInventory().addItem(ItemManager.playerTracker);
+                                    wolf.getInventory().addItem(ItemManager.wolfSword);
+                                    new PlayerTracker(wolf).runTaskTimer(plugin, 20, 5);
                                     plugin.gameRunning = true;
                                 }
-                                new EndRound(plugin).runTaskLater(plugin, plugin.getConfig().getInt("Timer") * 1200L);
-                                Player wolf = plugin.getServer().getPlayer(Objects.requireNonNull(plugin.getConfig().getString("Wolf")));
-                                assert wolf != null;
-                                wolf.getInventory().addItem(ItemManager.playerTracker);
-                                wolf.getInventory().addItem(ItemManager.wolfSword);
-                                player.sendMessage(Component.text("§aStarting the game!"));
+                                new EndRound(plugin).runTaskLater(plugin, (plugin.getConfig().getInt("Timer") * 1200L) - 100);
+                                player.sendMessage(Component.text("§aStarting the round!"));
                             }
                             return true;
                         default:
@@ -125,7 +128,7 @@ public class WolfCommands implements CommandExecutor {
                         }
                         else if (args[1].equalsIgnoreCase("scoreboard")){
                             try {
-                                plugin.getConfig().set("Scoreboard." + args[2].toLowerCase(), Objects.requireNonNull(getItemFrame(player)));
+                                plugin.getConfig().set("Scoreboard." + args[2].toLowerCase(), Objects.requireNonNull(Objects.requireNonNull(getItemFrame(player)).getUniqueId().toString()));
                                 plugin.saveConfig();
                                 player.sendMessage(Component.text("§aItemFrame set!"));
                             }
