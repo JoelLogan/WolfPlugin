@@ -1,0 +1,19 @@
+name: Wolf
+version: '${project.version}'
+main: com.whitehallplugins.wolf.Main
+api-version: '1.20'
+authors: [Team_Whitehall]
+commands:
+  wolf:
+    description: Wolf control command
+    usage: /<command> <option>
+
+permissions:
+  wolf.*:
+    description: Gives access to all Wolf commands
+    children:
+      wolf.admin: true
+
+  wolf.admin:
+    description: This is the main admin permission
+    default: false
