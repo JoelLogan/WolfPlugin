@@ -51,7 +51,7 @@ public class EndRound extends BukkitRunnable {
         };
     }
 
-    private BukkitRunnable updateScoreboard() {
+    public BukkitRunnable updateScoreboard() {
         return new BukkitRunnable() {
             @Override
             public void run() {

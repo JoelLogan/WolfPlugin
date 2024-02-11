@@ -6,7 +6,7 @@
 
   <groupId>com.whitehallplugins</groupId>
   <artifactId>Wolf</artifactId>
-  <version>0.9</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>Wolf</name>
@@ -64,7 +64,7 @@
       <dependency>
           <groupId>io.papermc.paper</groupId>
           <artifactId>paper-api</artifactId>
-          <version>1.20.4-R0.1-SNAPSHOT</version>
+          <version>1.20.1-R0.1-SNAPSHOT</version>
           <scope>provided</scope>
       </dependency>
   </dependencies>
